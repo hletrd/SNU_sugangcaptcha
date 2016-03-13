@@ -1,0 +1,1 @@
+# SNU sugang auto captcha
