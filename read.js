@@ -37,7 +37,7 @@ for(var i in samples) {
 	}
 
 	if (failed) {
-		fs.rename('./read/' + samples[i], './result/failed_' + (0|Math.random()*100000) + '.png');
+		fs.rename('./read/' + samples[i], './failed/failed_' + (0|Math.random()*1000000) + '.png');
 		continue;
 	}
 
