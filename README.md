@@ -5,5 +5,5 @@
 * Put captcha image in 'read' directory
 
 * ```
-node.js read.js
+node read.js
 
