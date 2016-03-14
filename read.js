@@ -7,7 +7,7 @@ samples = fs.readdirSync('./read');
 
 console.time("reading");
 for(var i in samples) {
-	if (samples[i] == '.DS_Store') continue;
+	if (samples[i] == '.DS_Store' || samples[i] == '.gitignore') continue;
 	var text = samples[i].split('_')[0];
 	var data = pngparse(fs.readFileSync('./read/' + samples[i]));
 
