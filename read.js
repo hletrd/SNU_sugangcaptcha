@@ -26,7 +26,7 @@ for(var i in samples) {
 		}
 		if (character == false && character_old == true) {
 			cut1 = j;
-			found = true
+			found = true;
 		}
 		if (character == true && character_old == false && found) {
 			cut2 = j;
@@ -34,6 +34,26 @@ for(var i in samples) {
 		}
 		if (j == 51) failed = true;
 		character_old = character;
+	}
+
+	if (failed) {
+		failed = false;
+		var character = 12632256, character_old = 12632256;
+		for(var j = 0; j < 52; j++) {
+			for(var k = 0; k < 26; k++) {
+				if (data.getRawPixel(j, k) != 12632256) {
+					character = data.getRawPixel(j, k);
+					break;
+				}
+			}
+			if (character != character_old && character_old != 12632256) {
+				cut1 = j;
+				cut2 = j;
+				break;
+			}
+			if (j == 51) failed = true;
+			character_old = character;
+		}
 	}
 
 	if (failed) {
@@ -86,6 +106,6 @@ for(var i in samples) {
 	}
 	max1 = (0|max1*100000)/100000;
 	max2 = (0|max2*100000)/100000;
-	/*if (max1 > 0.98 && max2 > 0.98)*/ fs.rename('./read/' + samples[i], './result/' + ans1 + ans2 + '_' + max1 + ',' + max2 + '.png');
+	/*if (max1 > 0.98 && max2 > 0.98)*/ fs.rename('./read/' + samples[i], './result/' + ans1 + ans2 + '_' + max1 + ',' + max2 + '_' + (0|Math.random()*100000) + '.png');
 }
 console.timeEnd("reading");
