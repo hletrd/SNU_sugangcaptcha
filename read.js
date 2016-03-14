@@ -14,8 +14,9 @@ for(var i in samples) {
 	var character_old = false;
 	var cut1 = 26, cut2 = 26;
 	var found = false;
+	var failed = false;
 
-	for(var j = 0; j < 51; j++) {
+	for(var j = 0; j < 52; j++) {
 		var character = false;
 		for(var k = 0; k < 26; k++) {
 			if (data.getPixel(j, k) != 12632256) {
@@ -31,7 +32,13 @@ for(var i in samples) {
 			cut2 = j;
 		}
 		if (cut1 != 26 && cut2 != 26) break;
+		if (j == 51) failed = true;
 		character_old = character;
+	}
+
+	if (failed) {
+		fs.rename('./read/' + samples[i], './result/failed_' + (0|Math.random()*100000) + '.png');
+		continue;
 	}
 
 	var input = new convnetjs.Vol(26, 26, 1, 0.0);
