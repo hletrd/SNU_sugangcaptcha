@@ -3,7 +3,7 @@ var fs = require('fs');
 
 var net = new convnetjs.Net();
 
-
+/*
 var layer_defs = [];
 layer_defs.push({type:'input', out_sx:26, out_sy:26, out_depth:1});
 layer_defs.push({type:'conv', sx:5, filters:36, stride:1, pad:0, activation:'relu'});
@@ -20,11 +20,10 @@ fs.writeFileSync('net.json', str);
 
 var trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 
-
 samples = fs.readdirSync('./train');
 var pngparse = require('pngparse-sync');
 
-var traincount = 10;
+var traincount = 100;
 console.time("training");
 
 function shuffle(arr) {
@@ -63,7 +62,7 @@ for(var h = 0; h < traincount; h++) {
 			}
 			if (character == false && character_old == true) {
 				cut1 = j;
-				found = true
+				found = true;
 			}
 			if (character == true && character_old == false && found) {
 				cut2 = j;
@@ -71,7 +70,7 @@ for(var h = 0; h < traincount; h++) {
 			}
 			character_old = character;
 		}
-		//console.log(samples[i] + '//' + cut1 + '//' + cut2);
+		
 		var offset = cut1 - 26;
 		for(var j = cut1 - 26; j < cut1; j++) {
 			if (j < 0) {
