@@ -3,12 +3,12 @@ var fs = require('fs');
 
 var net = new convnetjs.Net();
 
-/*
+
 var layer_defs = [];
 layer_defs.push({type:'input', out_sx:26, out_sy:26, out_depth:1});
-layer_defs.push({type:'conv', sx:5, filters:24, stride:1, pad:0, activation:'relu'});
+layer_defs.push({type:'conv', sx:5, filters:36, stride:1, pad:0, activation:'relu'});
 layer_defs.push({type:'pool', sx:2, stride:2});
-layer_defs.push({type:'conv', sx:5, filters:48, stride:1, pad:0, activation:'relu'});
+layer_defs.push({type:'conv', sx:5, filters:72, stride:1, pad:0, activation:'relu'});
 layer_defs.push({type:'pool', sx:3, stride:3});
 layer_defs.push({type:'softmax', num_classes:10});
 net.makeLayers(layer_defs);
