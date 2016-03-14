@@ -19,7 +19,7 @@ for(var i in samples) {
 	for(var j = 0; j < 52; j++) {
 		var character = false;
 		for(var k = 0; k < 26; k++) {
-			if (data.getPixel(j, k) != 12632256) {
+			if (data.getPixel(j, k) != 1) {
 				character = true;
 				break;
 			}
@@ -30,8 +30,8 @@ for(var i in samples) {
 		}
 		if (character == true && character_old == false && found) {
 			cut2 = j;
+			break;
 		}
-		if (cut1 != 26 && cut2 != 26) break;
 		if (j == 51) failed = true;
 		character_old = character;
 	}
