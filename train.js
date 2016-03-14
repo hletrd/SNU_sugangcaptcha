@@ -2,7 +2,7 @@ var convnetjs = require('convnetjs');
 
 var net = new convnetjs.Net();
 
-/*
+
 var layer_defs = [];
 layer_defs.push({type:'input', out_sx:26, out_sy:26, out_depth:1});
 layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
@@ -18,15 +18,30 @@ var trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l
 var fs = require('fs');
 samples = fs.readdirSync('./train');
 
-
+/*
 var net_past = JSON.parse(fs.readFileSync("./net.json"));
 net.fromJSON(net_past);
 //*/
 
 var pngparse = require('pngparse-sync');
 
-var traincount = 10;
+var traincount = 5;
+console.time("training");
+
+function shuffle(arr) {
+	var len = arr.length;
+	while (len) {
+		var rnd = 0|Math.random()*len;
+		len--;
+		var tmp = arr[len];
+		arr[len] = arr[rnd];
+		arr[rnd] = tmp;
+	}
+	return arr;
+}
+
 for(var h = 0; h < traincount; h++) {
+	shuffle(samples);
 	for(var i in samples) {
 		var text = samples[i].split('_')[0];
 		var data = pngparse(fs.readFileSync('./train/' + samples[i]));
@@ -86,6 +101,7 @@ for(var h = 0; h < traincount; h++) {
 	}
 	console.log(h);
 }
+console.timeEnd("training");
 
 var json = net.toJSON();
 var str = JSON.stringify(json);
