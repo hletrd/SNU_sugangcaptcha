@@ -15,6 +15,7 @@ for(var i in samples) {
 	var cut1 = 26, cut2 = 26;
 	var found = false;
 	var failed = false;
+	var prefix = '';
 
 	for(var j = 0; j < 52; j++) {
 		var character = false;
@@ -38,6 +39,7 @@ for(var i in samples) {
 
 	if (failed) {
 		failed = false;
+		prefix = 'sep_';
 		var character = 12632256, character_old = 12632256;
 		for(var j = 0; j < 52; j++) {
 			for(var k = 0; k < 26; k++) {
@@ -106,6 +108,6 @@ for(var i in samples) {
 	}
 	max1 = (0|max1*100000)/100000;
 	max2 = (0|max2*100000)/100000;
-	/*if (max1 > 0.98 && max2 > 0.98)*/ fs.rename('./read/' + samples[i], './result/' + ans1 + ans2 + '_' + max1 + ',' + max2 + '_' + (0|Math.random()*100000) + '.png');
+	/*if (max1 > 0.98 && max2 > 0.98)*/ fs.rename('./read/' + prefix + samples[i], './result/' + ans1 + ans2 + '_' + max1 + ',' + max2 + '_' + (0|Math.random()*100000) + '.png');
 }
 console.timeEnd("reading");
