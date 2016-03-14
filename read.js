@@ -43,7 +43,7 @@ for(var i in samples) {
 			}
 		} else {
 			for(var k = 0; k < 26; k++) {
-				input.w[(j-offset)*26 + k] = data.getPixel(j, k)/16843008;
+				input.w[(j-offset)*26 + k] = data.getPixel(j, k);
 			}
 		}
 	}
@@ -58,7 +58,7 @@ for(var i in samples) {
 			}
 		} else {
 			for(var k = 0; k < 26; k++) {
-				input.w[(j-offset)*26 + k] = data.getPixel(j, k)/16843008;
+				input.w[(j-offset)*26 + k] = data.getPixel(j, k);
 			}
 		}
 	}
