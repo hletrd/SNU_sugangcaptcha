@@ -2,7 +2,7 @@ var convnetjs = require('convnetjs');
 
 var net = new convnetjs.Net();
 
-
+/*
 var layer_defs = [];
 layer_defs.push({type:'input', out_sx:26, out_sy:26, out_depth:1});
 layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
@@ -35,9 +35,11 @@ function shuffle(arr) {
 	return arr;
 }
 
+/*
 var json = net.toJSON();
 var str = JSON.stringify(json);
 fs.writeFileSync('net.json', str);
+//*/
 
 for(var h = 0; h < traincount; h++) {
 	var net_past = JSON.parse(fs.readFileSync("./net.json"));
