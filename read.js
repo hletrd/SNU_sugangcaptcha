@@ -108,6 +108,6 @@ for(var i in samples) {
 	}
 	max1 = (0|max1*100000)/100000;
 	max2 = (0|max2*100000)/100000;
-	/*if (max1 > 0.98 && max2 > 0.98)*/ fs.rename('./read/' + prefix + samples[i], './result/' + ans1 + ans2 + '_' + max1 + ',' + max2 + '_' + (0|Math.random()*100000) + '.png');
+	/*if (max1 > 0.98 && max2 > 0.98)*/ fs.rename('./read/' + samples[i], './result/' + prefix + ans1 + ans2 + '_' + max1 + ',' + max2 + '_' + (0|Math.random()*100000) + '.png');
 }
 console.timeEnd("reading");
