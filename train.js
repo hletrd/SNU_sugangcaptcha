@@ -18,11 +18,6 @@ var trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l
 var fs = require('fs');
 samples = fs.readdirSync('./train');
 
-/*
-var net_past = JSON.parse(fs.readFileSync("./net.json"));
-net.fromJSON(net_past);
-//*/
-
 var pngparse = require('pngparse-sync');
 
 var traincount = 5;
@@ -40,7 +35,14 @@ function shuffle(arr) {
 	return arr;
 }
 
+var json = net.toJSON();
+var str = JSON.stringify(json);
+fs.writeFileSync('net.json', str);
+
 for(var h = 0; h < traincount; h++) {
+	var net_past = JSON.parse(fs.readFileSync("./net.json"));
+	net.fromJSON(net_past);
+
 	shuffle(samples);
 	for(var i in samples) {
 		var text = samples[i].split('_')[0];
@@ -99,10 +101,9 @@ for(var h = 0; h < traincount; h++) {
 		trainer.train(input, parseInt(text.split('')[1]));
 		if (i % 10 == 0) console.log(i);
 	}
-	console.log(h);
+	var json = net.toJSON();
+	var str = JSON.stringify(json);
+	fs.writeFileSync('net.json', str);
+	console.log('training: ' + h);
 }
 console.timeEnd("training");
-
-var json = net.toJSON();
-var str = JSON.stringify(json);
-fs.writeFile('net.json', str);
