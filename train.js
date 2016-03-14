@@ -1,26 +1,30 @@
 var convnetjs = require('convnetjs');
+var fs = require('fs');
 
 var net = new convnetjs.Net();
 
-/*
+
 var layer_defs = [];
 layer_defs.push({type:'input', out_sx:26, out_sy:26, out_depth:1});
-layer_defs.push({type:'conv', sx:5, filters:8, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'conv', sx:5, filters:24, stride:1, pad:0, activation:'relu'});
 layer_defs.push({type:'pool', sx:2, stride:2});
-layer_defs.push({type:'conv', sx:5, filters:16, stride:1, pad:2, activation:'relu'});
+layer_defs.push({type:'conv', sx:5, filters:48, stride:1, pad:0, activation:'relu'});
 layer_defs.push({type:'pool', sx:3, stride:3});
 layer_defs.push({type:'softmax', num_classes:10});
 net.makeLayers(layer_defs);
+
+var json = net.toJSON();
+var str = JSON.stringify(json);
+fs.writeFileSync('net.json', str);
 //*/
 
 var trainer = new convnetjs.SGDTrainer(net, {method:'adadelta', batch_size:20, l2_decay:0.001});
 
-var fs = require('fs');
-samples = fs.readdirSync('./train');
 
+samples = fs.readdirSync('./train');
 var pngparse = require('pngparse-sync');
 
-var traincount = 5;
+var traincount = 10;
 console.time("training");
 
 function shuffle(arr) {
@@ -34,12 +38,6 @@ function shuffle(arr) {
 	}
 	return arr;
 }
-
-/*
-var json = net.toJSON();
-var str = JSON.stringify(json);
-fs.writeFileSync('net.json', str);
-//*/
 
 for(var h = 0; h < traincount; h++) {
 	var net_past = JSON.parse(fs.readFileSync("./net.json"));
@@ -55,7 +53,7 @@ for(var h = 0; h < traincount; h++) {
 		var found = false;
 		var input = new convnetjs.Vol(26, 26, 1, 0.0);
 
-		for(var j = 0; j < 51; j++) {
+		for(var j = 0; j < 52; j++) {
 			var character = false;
 			for(var k = 0; k < 26; k++) {
 				if (data.getPixel(j, k) != 12632256) {
