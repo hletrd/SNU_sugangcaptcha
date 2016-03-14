@@ -39,7 +39,7 @@ for(var i in samples) {
 	for(var j = cut1 - 26; j < cut1; j++) {
 		if (j < 0) {
 			for(var k = 0; k < 26; k++) {
-				input.w[(j-offset)*26 + k] = 12632256/16843008;
+				input.w[(j-offset)*26 + k] = 1;
 			}
 		} else {
 			for(var k = 0; k < 26; k++) {
@@ -54,7 +54,7 @@ for(var i in samples) {
 	for(var j = cut2; j < cut2 + 26; j++) {
 		if (j >= 52) {
 			for(var k = 0; k < 26; k++) {
-				input.w[(j-offset)*26 + k] = 12632256/16843008;
+				input.w[(j-offset)*26 + k] = 1;
 			}
 		} else {
 			for(var k = 0; k < 26; k++) {
