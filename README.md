@@ -1,10 +1,11 @@
 # SNU sugang captcha bot
+* CNN + relu
 * Based on node.js + ConvNetJS(Convolutional neural network for Javascript)
 
 ## How to train neural network
 * Put sample image in 'train' directory, and rename as
 ```
-(Answer)_(anything you want to write).png
+(Answer)_(anything chars(to avoid duplication)).png
 ```
 * Run below
 ```bash
