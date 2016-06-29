@@ -1,4 +1,6 @@
 # SNU sugang captcha bot
+* Solving captcha on http://sugang.snu.ac.kr with deep learning.
+ * 99%+ accuracy
 * CNN + relu
 * Based on node.js + ConvNetJS(Convolutional neural network for Javascript)
 
